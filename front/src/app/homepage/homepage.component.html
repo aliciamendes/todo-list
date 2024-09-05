@@ -1,7 +1,7 @@
 <div class="container center">
   <div class="content">
     <header class="center">
-      <button class="optionsButton">
+      <button class="optionsButton center">
         <span class="material-symbols-outlined"> more_vert </span>
         <span>Options</span>
       </button>
@@ -19,8 +19,9 @@
             placeholder="Message..."
             type="text"
             id="messageInput"
+            (keyup.enter)="addedNote()"
           />
-          <button id="sendButton">
+          <button id="sendButton" (click)="addedNote()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -40,11 +41,6 @@
             </svg>
           </button>
         </div>
-
-        <button class="createButton">
-          <span class="material-symbols-outlined"> add </span>
-          <span> Create </span>
-        </button>
       </div>
     </main>
   </div>

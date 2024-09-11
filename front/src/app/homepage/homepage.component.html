@@ -8,18 +8,49 @@
     </header>
 
     <main>
-      <h2>my todo app</h2>
+      <div class="content_title center">
+        <svg
+          width="110"
+          height="95"
+          viewBox="0 0 110 95"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="109.394" height="95" rx="14" fill="#3B3B3F" />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M53.5882 19C57.8214 19 61.2131 19 63.9712 19.2078C63.6481 20.0169 63.4704 20.8998 63.4704 21.8243V23.236L62.0586 23.236C58.1602 23.236 54.9998 26.3964 54.9998 30.2948C54.9998 34.1933 58.1602 37.3537 62.0586 37.3537H63.4704V38.7654C63.4704 42.6639 66.6308 45.8243 70.5292 45.8243C72.8384 45.8243 74.8886 44.7154 76.1765 43.0012V52.8823C76.1765 63.5305 76.1765 68.8546 72.8685 72.1626C69.5605 75.4706 64.2364 75.4706 53.5882 75.4706C42.94 75.4706 37.6159 75.4706 34.308 72.1626C31 68.8546 31 63.5305 31 52.8824V41.5882C31 30.94 31 25.6159 34.308 22.308C37.6159 19 42.94 19 53.5882 19ZM42.2943 44.4118C40.7349 44.4118 39.4708 45.6759 39.4708 47.2353C39.4708 48.7947 40.7349 50.0588 42.2943 50.0588H53.5884C55.1478 50.0588 56.4119 48.7947 56.4119 47.2353C56.4119 45.6759 55.1478 44.4118 53.5884 44.4118H42.2943ZM42.2943 52.8824C40.7349 52.8824 39.4708 54.1465 39.4708 55.7059C39.4708 57.2653 40.7349 58.5294 42.2943 58.5294H59.2355C60.7949 58.5294 62.059 57.2653 62.059 55.7059C62.059 54.1465 60.7949 52.8824 59.2355 52.8824H42.2943ZM42.2943 61.3529C40.7349 61.3529 39.4708 62.6171 39.4708 64.1765C39.4708 65.7359 40.7349 67 42.2943 67H53.5884C55.1478 67 56.4119 65.7359 56.4119 64.1765C56.4119 62.6171 55.1478 61.3529 53.5884 61.3529H42.2943Z"
+            fill="#EEEEEE"
+          />
+          <path
+            d="M70.5298 21.8242L70.5298 38.7654"
+            stroke="#EEEEEE"
+            stroke-width="5.64706"
+            stroke-linecap="round"
+          />
+          <path
+            d="M79 30.2949L62.0588 30.2949"
+            stroke="#EEEEEE"
+            stroke-width="5.64706"
+            stroke-linecap="round"
+          />
+        </svg>
+
+        <h2>Todozator</h2>
+      </div>
 
       <div class="content_message">
         <span>What do you have to do?</span>
 
         <div class="messageBox">
           <input
-            required=""
-            placeholder="Message..."
+            required
+            [placeholder]="getPlaceholder()"
             type="text"
             id="messageInput"
             (keyup.enter)="addedNote()"
+            [formControl]="getStringInput.controls.descriptionNote"
           />
           <button id="sendButton" (click)="addedNote()">
             <svg
@@ -43,5 +74,31 @@
         </div>
       </div>
     </main>
+
+    <div class="noteList" *ngIf="isNote">
+      <div class="list_info">
+        <span>Done: {{ isDone() }}</span>
+      </div>
+      <div class="list_notes">
+        <div *ngFor="let item of listNotes; let i = index" class="content_list">
+          <div class="wrapper_check">
+            <input
+              type="checkbox"
+              [checked]="item.done"
+              (click)="handleDone(i)"
+            />
+            <p
+              class="list_item"
+              [ngStyle]="{ 'text-decoration': getTextDecoration(item) }"
+            >
+              {{ item.description }}
+            </p>
+          </div>
+          <button class="buttonMore">
+            <span class="material-symbols-outlined"> more_vert </span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

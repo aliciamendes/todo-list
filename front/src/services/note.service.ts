@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -6,21 +7,17 @@ import { Injectable } from '@angular/core';
 export class NoteService {
   private TASK_KEY = 'task';
 
-  constructor() {}
-
   saveNote(noteToSave: object) {
     const note = JSON.stringify(noteToSave);
     localStorage.setItem(this.TASK_KEY, note);
   }
 
-  findNotes() {
+  findNotes(): Observable<any[]> {
     const raw = localStorage.getItem(this.TASK_KEY);
-    return JSON.parse(raw || '[]');
+    return of(JSON.parse(raw || '[]'));
   }
 
   deleteNote() {}
 
   updateNote() {}
-
-  toggleNoteDone(noteID: string) {}
 }

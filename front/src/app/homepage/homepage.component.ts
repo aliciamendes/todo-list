@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { NoteService } from '../../services/note.service';
 import { generatePlaceholder } from '../../services/random-placeholder.service';
 import { generateUID } from '../../services/random-uuid.service';
@@ -27,10 +28,7 @@ export class HomepageComponent implements OnInit {
   notes: Note[] = [];
   listNotes: Note[] = [];
   isNote = false;
-
-  constructor(private service: NoteService) {
-    this.notes = [];
-  }
+  placeholder: string = '';
 
   getStringInput = new FormGroup({
     descriptionNote: new FormControl<string>('', [
@@ -39,19 +37,33 @@ export class HomepageComponent implements OnInit {
     ]),
   });
 
-  getPlaceholder() {
-    return generatePlaceholder();
+  constructor(
+    private service: NoteService,
+    private cdRef: ChangeDetectorRef,
+    private toastr: ToastrService
+  ) {
+    this.notes = [];
   }
 
   ngOnInit(): void {
     this.getNotes();
-    console.log(this.listNotes);
+    this.getPlaceholder();
+  }
+
+  getPlaceholder() {
+    this.placeholder = generatePlaceholder();
+    this.cdRef.detectChanges();
   }
 
   addedNote() {
     const noteUid = generateUID();
     const description = this.getStringInput.get('descriptionNote')
       ?.value as string;
+
+    if (description.length < 3) {
+      this.toastr.info('Minimum three characters!', 'Invalid entry!');
+      return;
+    }
 
     const myNote: Note = {
       id: noteUid,
@@ -62,28 +74,41 @@ export class HomepageComponent implements OnInit {
     this.notes.push(myNote);
 
     this.service.saveNote(this.notes);
-    this.getNotes();
+
     this.isNote = true;
-    this.isDone();
 
     this.getStringInput.patchValue({ descriptionNote: '' });
+
+    this.isDone();
+    this.getNotes();
   }
 
   isDone() {
-    return `${
-      this.listNotes.filter((i) => {
-        i.done;
-      }).length
-    }/${this.listNotes.length}`;
+    return `${this.listNotes.filter((i) => i.done === true).length}/${
+      this.listNotes.length
+    }`;
   }
 
   getNotes() {
-    this.listNotes = this.service.findNotes();
+    this.service.findNotes().subscribe({
+      next: (value: any) => {
+        this.listNotes = value;
+        this.isNote = true;
+        this.cdRef.detectChanges();
+      },
+    });
   }
 
   handleDone(index: number) {
     this.listNotes[index].done = !this.listNotes[index].done;
+
+    if (this.listNotes && this.listNotes[index]) {
+      this.listNotes[index].done = !this.listNotes[index].done;
+    }
+
     this.service.saveNote(this.listNotes);
+
+    this.isDone();
   }
 
   getTextDecoration(note: Note) {

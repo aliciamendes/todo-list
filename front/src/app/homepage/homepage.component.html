@@ -46,7 +46,8 @@
         <div class="messageBox">
           <input
             required
-            [placeholder]="getPlaceholder()"
+            [placeholder]="placeholder"
+            minlength="3"
             type="text"
             id="messageInput"
             (keyup.enter)="addedNote()"

@@ -1,27 +1,47 @@
-# Front
+<div align="center">
+    <img src="public/logo_readme.png" width="70%">
+</div>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
+---
 
-## Development server
+### 🧠 What is LocalList?
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This project was created with inspiration from [João Victor](https://github.com/joaovictornsv) LocalList project for those who need to organize their tasks in a simple and manageable way.
+The application doesn't have thousands of features, it has just enough to help you remember your tasks with a friendly user interface.
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 💡 How use
 
-## Build
+You can add your tasks and organize them. You can also edit, remove and pin your tasks.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+### 🚀 Technologies
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Angular](https://angular.dev/)
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 🎁 Contributing
 
-## Further help
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+### ⚖️ License
+
+[MIT License](https://github.com/aliciamendes/todo-list/blob/main/LICENSE)
+
+---
+
+### 🌱 Initial Project
+
+[LocalList](https://github.com/joaovictornsv/local-list)
+
+---
+
+<div align="center">
+    <span>Created by <a href="https://github.com/aliciamendes">Alícia Mendes </a>🚀
+    </span>
+</div>

@@ -5,6 +5,6 @@ export const routes: Routes = [
   {
     path: '',
     component: HomepageComponent,
-    title: 'ToDo - List',
+    title: 'TaskEase - ToDo App',
   },
 ];

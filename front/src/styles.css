@@ -192,7 +192,7 @@ button.toast-close-button {
 }
 
 .toast-info {
-  background-color: transparent;
+  background-color: #f89406;
 }
 
 .toast-warning {
@@ -237,3 +237,6 @@ button.toast-close-button {
     width: 25em;
   }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

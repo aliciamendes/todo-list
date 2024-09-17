@@ -13,8 +13,6 @@ import {
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ButtonModule } from 'primeng/button';
-import { MenuModule } from 'primeng/menu';
 import { NoteService } from '../../services/note.service';
 import { generatePlaceholder } from '../../services/random-placeholder.service';
 import { generateUID } from '../../services/random-uuid.service';
@@ -28,13 +26,7 @@ type Note = {
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [
-    RouterModule,
-    ReactiveFormsModule,
-    CommonModule,
-    MenuModule,
-    ButtonModule,
-  ],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css',
 })

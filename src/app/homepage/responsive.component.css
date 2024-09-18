@@ -1,0 +1,86 @@
+@media screen and (max-width: 720px) {
+  .content {
+    width: 60%;
+  }
+
+  .list_notes {
+    height: 16rem;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .list_notes {
+    height: 15rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .content {
+    width: 70%;
+  }
+
+  .list_notes {
+    height: 16rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .goGit a {
+    height: 1.5rem;
+  }
+
+  .goGit svg {
+    width: 1.2rem;
+  }
+
+  .content {
+    width: 80%;
+  }
+
+  .content_title {
+    height: 4rem;
+  }
+
+  .content_title svg {
+    width: 2rem;
+  }
+
+  .list_info > span {
+    font-size: 0.9rem;
+  }
+
+  main h2 {
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .list_notes {
+    height: 18rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .goGit a {
+    height: 1rem;
+  }
+
+  .goGit svg {
+    width: 1.2rem;
+  }
+
+  .content_title {
+    height: 4rem;
+  }
+
+  .list_info > span {
+    font-size: 0.8rem;
+  }
+
+  .content_message span {
+    font-size: 0.8rem;
+  }
+
+  .content_title svg {
+    width: 2rem;
+  }
+}

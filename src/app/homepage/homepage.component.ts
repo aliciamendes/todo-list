@@ -29,7 +29,7 @@ type Note = {
   standalone: true,
   imports: [RouterModule, ReactiveFormsModule, CommonModule, FormsModule],
   templateUrl: './homepage.component.html',
-  styleUrl: './homepage.component.css',
+  styleUrls: ['./homepage.component.css', './responsive.component.css'],
 })
 export class HomepageComponent implements OnInit {
   notes: Note[] = [];
@@ -60,8 +60,11 @@ export class HomepageComponent implements OnInit {
   onDocumentClick(event: Event) {
     const target = event.target as HTMLElement;
 
-    // Verifica se o clique foi dentro do menu ou do botão
     if (!target.closest('.moreOptions') && !target.closest('.buttonMore')) {
+      this.openMenuIndex = null;
+    }
+
+    if (target.closest('.moreOptions') && !target.closest('.buttonMore')) {
       this.openMenuIndex = null;
     }
   }
@@ -72,7 +75,11 @@ export class HomepageComponent implements OnInit {
   }
 
   toggleMenu(index: number) {
-    this.openMenuIndex = this.openMenuIndex === index ? null : index;
+    if (this.openMenuIndex === index) {
+      this.openMenuIndex = null;
+    } else {
+      this.openMenuIndex = index;
+    }
   }
 
   getPlaceholder() {
@@ -128,6 +135,10 @@ export class HomepageComponent implements OnInit {
   selectedNote: Note | null = null;
   editMenu(item: Note) {
     this.selectedNote = item;
+  }
+
+  verify(item: Note) {
+    return this.selectedNote?.id == item.id ? true : false;
   }
 
   saveEdit(description: string) {

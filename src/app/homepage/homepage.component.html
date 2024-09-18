@@ -18,17 +18,6 @@
   </button>
 
   <div class="content">
-    <header class="center">
-      <button
-        class="optionsButton center"
-        [routerLink]="['/options']"
-        routerLinkActive="router-link-active"
-      >
-        <span class="material-symbols-outlined"> more_vert </span>
-        <span>Options</span>
-      </button>
-    </header>
-
     <main>
       <div class="content_title center">
         <svg
@@ -105,7 +94,7 @@
       <div class="list_notes">
         <div *ngFor="let item of notes; let i = index" class="content_list">
           <div class="wrapper_check">
-            <div class="wrapper_item" *ngIf="selectedNote?.id !== item.id">
+            <div class="wrapper_item" *ngIf="!verify(item)">
               <input
                 type="checkbox"
                 [checked]="item.done"
@@ -119,12 +108,13 @@
               </p>
             </div>
 
-            <div class="wrapper_item_edit" *ngIf="selectedNote?.id == item.id">
+            <div class="wrapper_item_edit" *ngIf="verify(item)">
               <input
                 class="inputEditNote"
                 required
                 minlength="3"
                 type="text"
+                (keyup.enter)="saveEdit(item.description!)"
                 [(ngModel)]="item.description"
               />
               <button (click)="saveEdit(item.description!)" class="editButton">
@@ -148,7 +138,7 @@
             <button
               class="buttonMore"
               (click)="toggleMenu(i)"
-              *ngIf="openMenuIndex !== i"
+              *ngIf="openMenuIndex !== i && !verify(item)"
             >
               <span class="material-symbols-outlined">more_vert</span>
             </button>

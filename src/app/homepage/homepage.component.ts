@@ -3,7 +3,9 @@ import {
   ChangeDetectorRef,
   Component,
   HostListener,
+  OnChanges,
   OnInit,
+  SimpleChanges,
 } from '@angular/core';
 import {
   FormControl,
@@ -30,21 +32,22 @@ type Note = {
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css',
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit, OnChanges {
   notes: Note[] = [];
   isNote = false;
-  isEditNote = false;
+  isEdit = true;
   placeholder: string = '';
   openMenuIndex: number | null = null;
-
   getStringInput = new FormGroup({
     descriptionNote: new FormControl<string>('', [
       Validators.minLength(3),
       Validators.required,
     ]),
+    descriptionEditNote: new FormControl<string>('', [
+      Validators.minLength(3),
+      Validators.required,
+    ]),
   });
-
-  items: any;
 
   constructor(
     private service: NoteService,
@@ -52,6 +55,9 @@ export class HomepageComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.notes = [];
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    throw new Error('Method not implemented.');
   }
 
   @HostListener('document:click', ['$event'])
@@ -67,8 +73,6 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.getNotes();
     this.getPlaceholder();
-
-    this.items = [{ id: 3, name: 'Item 3' }];
   }
 
   toggleMenu(index: number) {
@@ -80,7 +84,19 @@ export class HomepageComponent implements OnInit {
     this.cdRef.detectChanges();
   }
 
-  // ! está inserindo o dobro
+  getNotes() {
+    this.service.findNotes().subscribe({
+      next: (value: any) => {
+        this.notes = value;
+        this.isNote = true;
+        this.cdRef.detectChanges();
+      },
+      error: (err) => {
+        this.isNote = false;
+      },
+    });
+  }
+
   addedNote() {
     const description = this.getStringInput.get('descriptionNote')
       ?.value as string;
@@ -108,13 +124,18 @@ export class HomepageComponent implements OnInit {
     this.getNotes();
   }
 
-  editNote() {
-    throw new Error('Method not implemented.');
-  }
-
   deleteNote(raw: Note) {
     this.notes = this.notes.filter((item: Note) => item.id !== raw.id);
-    this.service.saveNote(this.notes);
+  }
+
+  updateNote(raw: Note) {
+    const description = this.getStringInput.get('descriptionEditNote')
+      ?.value as string;
+
+    if (description.length < 3) {
+      this.toastr.info('Minimum three characters!', 'Invalid entry!');
+      return;
+    }
   }
 
   isDone() {
@@ -123,21 +144,12 @@ export class HomepageComponent implements OnInit {
     }`;
   }
 
-  getNotes() {
-    this.service.findNotes().subscribe({
-      next: (value: any) => {
-        this.notes = value;
-        this.isNote = true;
-        this.cdRef.detectChanges();
-      },
-      error: (err) => {
-        this.isNote = false;
-      },
-    });
-  }
-
   handleDone(index: number) {
     this.notes[index].done = !this.notes[index].done;
+
+    this.notes.sort((a: Note, b: Note) => {
+      return a.done === b.done ? 0 : a.done ? 1 : -1;
+    });
 
     this.service.saveNote(this.notes);
     this.isDone();

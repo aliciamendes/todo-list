@@ -2,7 +2,11 @@
     <img src="public/logo_readme.png" width="70%">
 </div>
 
+###
+
 ---
+
+###
 
 ### 🧠 What is LocalList?
 
@@ -11,9 +15,13 @@ The application doesn't have thousands of features, it has just enough to help y
 
 ---
 
+###
+
 ### 💡 How use
 
 You can add your tasks and organize them. You can also edit, remove and pin your tasks.
+
+###
 
 ---
 
@@ -23,17 +31,37 @@ You can add your tasks and organize them. You can also edit, remove and pin your
 
 ---
 
+###
+
+### 🐛 New Features
+
+- [ ] set task
+- [ ] light and dark theme
+- [ ] sort in ascending and descending order
+- [ ] exclude tasks completed in +30 days
+- [ ] include categories for tasks (with colors, perhaps)
+- [ ] include sections for tasks
+- [ ] include an expiration date for the task
+
+---
+
+###
+
 ### 🎁 Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ---
 
+###
+
 ### ⚖️ License
 
 [MIT License](https://github.com/aliciamendes/todo-list/blob/main/LICENSE)
 
 ---
+
+###
 
 ### 🌱 Initial Project
 

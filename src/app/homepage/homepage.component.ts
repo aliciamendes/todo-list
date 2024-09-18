@@ -3,13 +3,12 @@ import {
   ChangeDetectorRef,
   Component,
   HostListener,
-  OnChanges,
   OnInit,
-  SimpleChanges,
 } from '@angular/core';
 import {
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -28,16 +27,16 @@ type Note = {
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule, FormsModule],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css',
 })
-export class HomepageComponent implements OnInit, OnChanges {
+export class HomepageComponent implements OnInit {
   notes: Note[] = [];
   isNote = false;
-  isEdit = true;
   placeholder: string = '';
   openMenuIndex: number | null = null;
+
   getStringInput = new FormGroup({
     descriptionNote: new FormControl<string>('', [
       Validators.minLength(3),
@@ -55,9 +54,6 @@ export class HomepageComponent implements OnInit, OnChanges {
     private toastr: ToastrService
   ) {
     this.notes = [];
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    throw new Error('Method not implemented.');
   }
 
   @HostListener('document:click', ['$event'])
@@ -126,9 +122,29 @@ export class HomepageComponent implements OnInit, OnChanges {
 
   deleteNote(raw: Note) {
     this.notes = this.notes.filter((item: Note) => item.id !== raw.id);
+    this.service.saveNote(this.notes);
   }
 
-  updateNote(raw: Note) {
+  selectedNote: Note | null = null;
+  editMenu(item: Note) {
+    this.selectedNote = item;
+  }
+
+  saveEdit(description: string) {
+    if (this.selectedNote) {
+      this.notes = this.notes.map((note) => {
+        if (note.id === this.selectedNote!.id) {
+          return { ...note, description };
+        }
+        return note;
+      });
+      this.selectedNote = null;
+    }
+
+    this.service.saveNote(this.notes);
+  }
+
+  updateNote(raw: any) {
     const description = this.getStringInput.get('descriptionEditNote')
       ?.value as string;
 

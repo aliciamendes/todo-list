@@ -105,7 +105,7 @@
       <div class="list_notes">
         <div *ngFor="let item of notes; let i = index" class="content_list">
           <div class="wrapper_check">
-            <div class="wrapper_item" *ngIf="isEdit">
+            <div class="wrapper_item" *ngIf="selectedNote?.id !== item.id">
               <input
                 type="checkbox"
                 [checked]="item.done"
@@ -119,20 +119,15 @@
               </p>
             </div>
 
-            <div
-              class="wrapper_item_edit"
-              *ngIf="!isEdit"
-              [formGroup]="getStringInput"
-            >
+            <div class="wrapper_item_edit" *ngIf="selectedNote?.id == item.id">
               <input
                 class="inputEditNote"
                 required
                 minlength="3"
                 type="text"
-                formControlName="descriptionEditNote"
-                [ngModel]="item.description"
+                [(ngModel)]="item.description"
               />
-              <button class="editButton" (click)="updateNote(item)">
+              <button (click)="saveEdit(item.description!)" class="editButton">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -161,7 +156,7 @@
             <div class="moreOptions" *ngIf="openMenuIndex === i">
               <button
                 class="material-symbols-outlined"
-                (click)="isEdit = !isEdit"
+                (click)="editMenu(item)"
               >
                 edit
               </button>

@@ -1,6 +1,9 @@
 <div align="center">
     <img src="public/logo_readme.png" width="70%">
 </div>
+<div align="center">
+version 1.0.0
+</div>
 
 ###
 
@@ -8,9 +11,10 @@
 
 ###
 
-### 🧠 What is LocalList?
+### 🧠 What is TaskEase?
 
 This project was created with inspiration from [João Victor](https://github.com/joaovictornsv) [LocalList](https://github.com/joaovictornsv/local-list) project for those who need to organize their tasks in a simple and manageable way.
+
 The application doesn't have thousands of features, it has just enough to help you remember your tasks with a friendly user interface.
 
 ---
@@ -19,7 +23,7 @@ The application doesn't have thousands of features, it has just enough to help y
 
 ### 💡 How use
 
-You can add your tasks and organize them. You can also edit, remove and pin your tasks.
+You can add your tasks. You can also edit and remove your tasks.
 
 ###
 
@@ -35,7 +39,7 @@ You can add your tasks and organize them. You can also edit, remove and pin your
 
 ### 🐛 New Features
 
-- [ ] set task
+- [ x ] set task
 - [ ] light and dark theme
 - [ ] sort in ascending and descending order
 - [ ] exclude tasks completed in +30 days
@@ -43,17 +47,22 @@ You can add your tasks and organize them. You can also edit, remove and pin your
 - [ ] include sections for tasks
 - [ ] include an expiration date for the task
 
----
-
 ###
 
+<!--
 ### 🎁 Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome.
+
+  For major changes, please open an issue first to discuss what you would like to change. -->
 
 ---
 
-###
+### 🌱 Initial Project
+
+[LocalList](https://github.com/joaovictornsv/local-list)
+
+---
 
 ### ⚖️ License
 
@@ -62,12 +71,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ---
 
 ###
-
-### 🌱 Initial Project
-
-[LocalList](https://github.com/joaovictornsv/local-list)
-
----
 
 <div align="center">
     <span>Created by <a href="https://github.com/aliciamendes">Alícia Mendes </a>🚀

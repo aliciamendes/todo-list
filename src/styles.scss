@@ -8,13 +8,9 @@
 }
 
 body {
-  font-size: 100%;
   list-style-type: none;
-  background-color: #202023;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
-/*  */
 
 .toast-center-center {
   top: 50%;
@@ -192,7 +188,7 @@ button.toast-close-button {
 }
 
 .toast-info {
-  background-color: #f89406;
+  background-color: #202023;
 }
 
 .toast-warning {
@@ -238,5 +234,20 @@ button.toast-close-button {
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

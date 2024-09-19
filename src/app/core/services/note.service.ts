@@ -16,8 +16,4 @@ export class NoteService {
     const raw = localStorage.getItem(this.TASK_KEY);
     return of(JSON.parse(raw || '[]'));
   }
-
-  deleteNote() {}
-
-  updateNote() {}
 }

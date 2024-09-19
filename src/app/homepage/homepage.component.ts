@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -14,34 +14,38 @@ import {
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NoteService } from '../../services/note.service';
-import { generatePlaceholder } from '../../services/random-placeholder.service';
-import { generateUID } from '../../services/random-uuid.service';
-
-type Note = {
-  id: string;
-  done: boolean;
-  description: string | null;
-};
+import { Note } from '../core/modules/interface';
+import { NoteService } from '../core/services/note.service';
+import { generatePlaceholder } from '../core/services/random-placeholder.service';
+import { generateUID } from '../core/services/random-uuid.service';
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule, FormsModule],
+  imports: [
+    RouterModule,
+    ReactiveFormsModule,
+    CommonModule,
+    FormsModule,
+    AsyncPipe,
+  ],
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css', './responsive.component.css'],
+  styleUrls: ['./homepage.component.scss', './responsive.component.scss'],
 })
 export class HomepageComponent implements OnInit {
   notes: Note[] = [];
   isNote = false;
   placeholder: string = '';
   openMenuIndex: number | null = null;
+  selectedNote: Note | null = null;
+  isPin: boolean = false;
 
   getStringInput = new FormGroup({
     descriptionNote: new FormControl<string>('', [
       Validators.minLength(3),
       Validators.required,
     ]),
+
     descriptionEditNote: new FormControl<string>('', [
       Validators.minLength(3),
       Validators.required,
@@ -54,6 +58,11 @@ export class HomepageComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.notes = [];
+  }
+
+  ngOnInit(): void {
+    this.getNotes();
+    this.getPlaceholder();
   }
 
   @HostListener('document:click', ['$event'])
@@ -69,11 +78,6 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.getNotes();
-    this.getPlaceholder();
-  }
-
   toggleMenu(index: number) {
     if (this.openMenuIndex === index) {
       this.openMenuIndex = null;
@@ -83,8 +87,8 @@ export class HomepageComponent implements OnInit {
   }
 
   getPlaceholder() {
-    this.placeholder = generatePlaceholder();
     this.cdRef.detectChanges();
+    this.placeholder = generatePlaceholder();
   }
 
   getNotes() {
@@ -93,9 +97,6 @@ export class HomepageComponent implements OnInit {
         this.notes = value;
         this.isNote = true;
         this.cdRef.detectChanges();
-      },
-      error: (err) => {
-        this.isNote = false;
       },
     });
   }
@@ -111,18 +112,15 @@ export class HomepageComponent implements OnInit {
 
     const myNote: Note = {
       id: generateUID(),
-      done: false,
       description: description,
+      done: false,
+      isPinned: false,
     };
 
     this.notes.push(myNote);
-
     this.service.saveNote(this.notes);
-
     this.isNote = true;
-
     this.getStringInput.patchValue({ descriptionNote: '' });
-
     this.isDone();
     this.getNotes();
   }
@@ -132,7 +130,41 @@ export class HomepageComponent implements OnInit {
     this.service.saveNote(this.notes);
   }
 
-  selectedNote: Note | null = null;
+  pinNote(raw: Note) {
+    const index = this.notes.indexOf(raw);
+
+    if (index > -1) {
+      this.notes.splice(index, 1);
+      raw.isPinned = true;
+      this.isPin = raw.isPinned;
+      this.notes.unshift(raw);
+
+      if (raw.isPinned === true) {
+      }
+    } else {
+      raw.isPinned = true;
+      this.notes.unshift(raw);
+    }
+
+    this.service.saveNote(this.notes);
+    this.getNotes();
+  }
+
+  unpinNote(raw: Note) {
+    this.isPin = true;
+
+    const index = this.notes.indexOf(raw);
+    if (index > -1) {
+      raw.isPinned = false;
+      this.isPin = raw.isPinned;
+      this.notes.splice(index, 1);
+      this.notes.push(raw);
+    }
+
+    this.service.saveNote(this.notes);
+    this.getNotes();
+  }
+
   editMenu(item: Note) {
     this.selectedNote = item;
   }
@@ -180,6 +212,17 @@ export class HomepageComponent implements OnInit {
 
     this.service.saveNote(this.notes);
     this.isDone();
+
+    let notes = 0;
+    this.notes.forEach((item: Note) => {
+      if (item.done) {
+        notes++;
+      }
+    });
+
+    if (notes === Math.round(this.notes.length / 2)) {
+      this.toastr.info("we're almost done", 'Yahoo');
+    }
   }
 
   getTextDecoration(note: Note) {

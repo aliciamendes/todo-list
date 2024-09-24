@@ -18,6 +18,7 @@ import { Note } from '../core/modules/interface';
 import { NoteService } from '../core/services/note.service';
 import { generatePlaceholder } from '../core/services/random-placeholder.service';
 import { generateUID } from '../core/services/random-uuid.service';
+import { sortingNotes } from './../core/services/order_notes.service';
 
 @Component({
   selector: 'app-homepage',
@@ -39,6 +40,7 @@ export class HomepageComponent implements OnInit {
   openMenuIndex: number | null = null;
   selectedNote: Note | null = null;
   isPin: boolean = false;
+  options: any;
 
   getStringInput = new FormGroup({
     descriptionNote: new FormControl<string>('', [
@@ -63,6 +65,24 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.getNotes();
     this.getPlaceholder();
+    this.verifyCurrentDate();
+
+    this.options = [
+      {
+        name: 'ASC',
+        function: () => {
+          this.notes = sortingNotes(this.notes, 'asc');
+          this.service.saveNote(this.notes);
+        },
+      },
+      {
+        name: 'DESC',
+        function: () => {
+          this.notes = sortingNotes(this.notes, 'desc');
+          this.service.saveNote(this.notes);
+        },
+      },
+    ];
   }
 
   @HostListener('document:click', ['$event'])
@@ -110,11 +130,14 @@ export class HomepageComponent implements OnInit {
       return;
     }
 
+    let currentDate = new Date();
+
     const myNote: Note = {
       id: generateUID(),
       description: description,
       done: false,
       isPinned: false,
+      dateDone: currentDate,
     };
 
     this.notes.push(myNote);
@@ -227,5 +250,19 @@ export class HomepageComponent implements OnInit {
 
   getTextDecoration(note: Note) {
     return note.done ? 'line-through' : 'none';
+  }
+
+  verifyCurrentDate() {
+    const currentDate = new Date();
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(currentDate.getDate() - 1);
+
+    this.notes = this.notes.filter((item: Note) => {
+      if (item.dateDone) {
+        const dateDone = new Date(item.dateDone);
+        return dateDone >= thirtyDaysAgo;
+      }
+      return true;
+    });
   }
 }

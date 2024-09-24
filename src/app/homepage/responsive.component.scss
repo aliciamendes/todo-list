@@ -6,11 +6,19 @@
   .list_notes {
     height: 16rem;
   }
+
+  .list_item {
+    width: 22rem;
+  }
 }
 
 @media screen and (max-width: 580px) {
   .list_notes {
     height: 15rem;
+  }
+
+  .list_item {
+    width: 18rem;
   }
 }
 
@@ -21,6 +29,10 @@
 
   .list_notes {
     height: 16rem;
+  }
+
+  .list_item {
+    width: 14rem;
   }
 }
 
@@ -57,6 +69,10 @@
   .list_notes {
     height: 18rem;
   }
+
+  .list_item {
+    width: 12rem;
+  }
 }
 
 @media screen and (max-width: 300px) {
@@ -82,5 +98,10 @@
 
   .content_title svg {
     width: 2rem;
+  }
+
+  .list_item {
+    font-size: 0.8rem;
+    width: 10rem;
   }
 }

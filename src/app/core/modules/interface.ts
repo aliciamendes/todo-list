@@ -3,4 +3,5 @@ export type Note = {
   done: boolean;
   isPinned?: boolean;
   description: string | null;
+  dateDone: Date;
 };

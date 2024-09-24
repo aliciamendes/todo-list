@@ -2,7 +2,7 @@
     <img src="public/logo_readme.png" width="70%">
 </div>
 <div align="center">
-version 1.0.0
+version 1.1.0
 </div>
 
 ###
@@ -13,7 +13,7 @@ version 1.0.0
 
 ### 🧠 What is TaskEase?
 
-This project was created with inspiration from [João Victor](https://github.com/joaovictornsv) [LocalList](https://github.com/joaovictornsv/local-list) project for those who need to organize their tasks in a simple and manageable way.
+This project was created with inspiration from [João Victor](https://github.com/joaovictornsv) project for those who need to organize their tasks in a simple and manageable way.
 
 The application doesn't have thousands of features, it has just enough to help you remember your tasks with a friendly user interface.
 
@@ -31,36 +31,27 @@ You can add your tasks. You can also edit and remove your tasks.
 
 ### 🚀 Technologies
 
-- [Angular](https://angular.dev/)
-
----
-
-###
-
-### 🐛 New Features
-
-- [ x ] set task
-- [ ] light and dark theme
-- [ ] sort in ascending and descending order
-- [ ] exclude tasks completed in +30 days
-- [ ] include categories for tasks (with colors, perhaps)
-- [ ] include sections for tasks
-- [ ] include an expiration date for the task
-
-###
-
-<!--
-### 🎁 Contributing
-
-Pull requests are welcome.
-
-  For major changes, please open an issue first to discuss what you would like to change. -->
+[Angular 18](https://angular.dev/), [SCSS](https://sass-lang.com/) and [TypeScript](https://www.typescriptlang.org/)
 
 ---
 
 ### 🌱 Initial Project
 
-[LocalList](https://github.com/joaovictornsv/local-list)
+Take a closer look at the original project: [LocalList](https://github.com/joaovictornsv/local-list)
+
+---
+
+### 🐛 New Features
+
+[ x ] set task  
+[ ] light and dark theme  
+[ x ] sort in ascending and descending order  
+[ ] exclude tasks completed in +30 days  
+[ ] include categories for tasks (with colors, perhaps)  
+[ ] include sections for tasks  
+[ ] include an expiration date for the task
+
+###
 
 ---
 

@@ -83,8 +83,14 @@ input:checked + .slider:before {
 .container {
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
-  background-color: #202023;
+  height: 98vh;
+
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 2px,
+    transparent 0
+  );
+  background-size: 3rem 3rem;
+  background-position: -5px -5px;
 }
 
 .details {
@@ -106,7 +112,6 @@ input:checked + .slider:before {
 
   position: relative;
   font-size: 0.8rem;
-  color: #676767;
   letter-spacing: 0.05rem;
 
   a {
@@ -210,6 +215,7 @@ main .content_message {
   outline: none;
   border: none;
   padding-left: 10px;
+  padding-right: 10px;
   color: white;
 }
 
@@ -258,8 +264,153 @@ main .content_message {
 .list_info {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+
   margin: 1rem 0;
+
+  /* From Uiverse.io by gharsh11032000 */
+  .menu {
+    font-size: 0.9rem;
+    line-height: 1rem;
+    color: #6f6f6f;
+    width: fit-content;
+    display: flex;
+    list-style: none;
+  }
+
+  .menu a {
+    text-decoration: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .menu .link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .menu .link::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .menu .link svg {
+    width: 14px;
+    height: 14px;
+    fill: #6f6f6f;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .menu .item {
+    position: relative;
+  }
+
+  .menu .item .submenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 100%;
+    border-radius: 0 0 16px 16px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #cccccc;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+    pointer-events: none;
+    list-style: none;
+  }
+
+  .menu .item:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    border-top: transparent;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: none;
+  }
+
+  .menu .item:hover .link {
+    color: #ffffff;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .menu .item:hover .link::after {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+
+  .menu .item:hover .link svg {
+    fill: #ffffff;
+    transform: rotate(-180deg);
+  }
+
+  .submenu .submenu-item {
+    width: 100%;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .submenu .submenu-link {
+    display: block;
+    background-color: transparent;
+    border: none;
+    padding: 12px 24px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+  }
+
+  .submenu .submenu-item:last-child .submenu-link {
+    border-bottom: none;
+  }
+
+  .submenu .submenu-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    width: 100%;
+    height: 100%;
+    background-color: #2b2b2e;
+    z-index: -1;
+    transform-origin: left;
+    transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .submenu .submenu-link:hover:before {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+
+  .submenu .submenu-link:hover {
+    color: #ffffff;
+  }
 }
 
 .list_notes {
@@ -335,6 +486,10 @@ main .content_message {
   font-size: 0.9rem;
   font-weight: normal;
   letter-spacing: 0.05rem;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 32rem;
+  text-overflow: ellipsis;
 }
 
 .buttonMore {
@@ -358,6 +513,7 @@ main .content_message {
   align-items: center;
   justify-content: space-around;
   position: relative;
+  right: 1rem;
   width: 6rem;
   height: 2rem;
   background-color: #323232;

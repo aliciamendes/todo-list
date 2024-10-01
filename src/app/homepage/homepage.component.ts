@@ -12,6 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Note } from '../core/modules/interface';
@@ -27,6 +28,7 @@ import { sortingNotes } from './../core/services/order_notes.service';
     RouterModule,
     ReactiveFormsModule,
     CommonModule,
+    MatSlideToggleModule,
     FormsModule,
     AsyncPipe,
   ],
@@ -65,7 +67,6 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.getNotes();
     this.getPlaceholder();
-    this.verifyCurrentDate();
 
     this.options = [
       {
@@ -119,33 +120,6 @@ export class HomepageComponent implements OnInit {
         this.cdRef.detectChanges();
       },
     });
-  }
-
-  addedNote() {
-    const description = this.getStringInput.get('descriptionNote')
-      ?.value as string;
-
-    if (description.length < 3) {
-      this.toastr.info('Minimum three characters!', 'Invalid entry!');
-      return;
-    }
-
-    let currentDate = new Date();
-
-    const myNote: Note = {
-      id: generateUID(),
-      description: description,
-      done: false,
-      isPinned: false,
-      dateDone: currentDate,
-    };
-
-    this.notes.push(myNote);
-    this.service.saveNote(this.notes);
-    this.isNote = true;
-    this.getStringInput.patchValue({ descriptionNote: '' });
-    this.isDone();
-    this.getNotes();
   }
 
   deleteNote(raw: Note) {
@@ -210,16 +184,6 @@ export class HomepageComponent implements OnInit {
     this.service.saveNote(this.notes);
   }
 
-  updateNote(raw: any) {
-    const description = this.getStringInput.get('descriptionEditNote')
-      ?.value as string;
-
-    if (description.length < 3) {
-      this.toastr.info('Minimum three characters!', 'Invalid entry!');
-      return;
-    }
-  }
-
   isDone() {
     return `${this.notes.filter((i) => i.done === true).length}/${
       this.notes.length
@@ -235,7 +199,10 @@ export class HomepageComponent implements OnInit {
 
     this.service.saveNote(this.notes);
     this.isDone();
+    this.toastMiddleNotes();
+  }
 
+  toastMiddleNotes() {
     let notes = 0;
     this.notes.forEach((item: Note) => {
       if (item.done) {
@@ -252,17 +219,31 @@ export class HomepageComponent implements OnInit {
     return note.done ? 'line-through' : 'none';
   }
 
-  verifyCurrentDate() {
-    const currentDate = new Date();
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(currentDate.getDate() - 1);
+  getColor(note: Note) {
+    return note.done ? '#A1A1A3' : '#B8B8B8';
+  }
 
-    this.notes = this.notes.filter((item: Note) => {
-      if (item.dateDone) {
-        const dateDone = new Date(item.dateDone);
-        return dateDone >= thirtyDaysAgo;
-      }
-      return true;
-    });
+  addedNote() {
+    const description = this.getStringInput.get('descriptionNote')
+      ?.value as string;
+
+    if (description.length < 3) {
+      this.toastr.info('Minimum three characters!', 'Invalid entry!');
+      return;
+    }
+
+    const myNote: Note = {
+      id: generateUID(),
+      description: description,
+      done: false,
+      isPinned: false,
+    };
+
+    this.notes.push(myNote);
+    this.service.saveNote(this.notes);
+    this.isNote = true;
+    this.getStringInput.patchValue({ descriptionNote: '' });
+    this.isDone();
+    this.getNotes();
   }
 }

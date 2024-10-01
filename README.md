@@ -43,13 +43,12 @@ Take a closer look at the original project: [LocalList](https://github.com/joaov
 
 ### 🐛 New Features
 
-[ x ] set task  
-[ ] light and dark theme  
-[ x ] sort in ascending and descending order  
-[ ] exclude tasks completed in +30 days  
-[ ] include categories for tasks (with colors, perhaps)  
-[ ] include sections for tasks  
-[ ] include an expiration date for the task
+- [ x ] set task
+- [ x ] sort in ascending and descending order
+- [ ] light and dark theme
+- [ ] include categories for tasks (with colors, perhaps)
+- [ ] include sections for tasks
+- [ ] encrypt and decrypt note data
 
 ###
 
@@ -64,6 +63,7 @@ Take a closer look at the original project: [LocalList](https://github.com/joaov
 ###
 
 <div align="center">
-    <span>Created by <a href="https://github.com/aliciamendes">Alícia Mendes </a>🚀
+    <span>Created by <a href="https://github.com/aliciamendes">Alícia Mendes </a>
+    with inspiration from <a href="https://github.com/joaovictornsv">João Victor </a> 🚀
     </span>
 </div>

@@ -10,6 +10,10 @@
   .list_item {
     width: 22rem;
   }
+
+  .moreOptions {
+    right: 3rem;
+  }
 }
 
 @media screen and (max-width: 580px) {
@@ -18,7 +22,11 @@
   }
 
   .list_item {
-    width: 18rem;
+    width: 17rem;
+  }
+
+  .moreOptions {
+    right: 4rem;
   }
 }
 
@@ -34,9 +42,18 @@
   .list_item {
     width: 14rem;
   }
+
+  .moreOptions {
+    right: 4rem;
+  }
 }
 
 @media screen and (max-width: 320px) {
+  .container {
+    background-size: 2rem 2rem;
+    background-position: -10px -15px;
+  }
+
   .goGit a {
     height: 1.5rem;
   }

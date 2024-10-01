@@ -1,9 +1,9 @@
 ::-webkit-scrollbar {
-  width: 0.5rem;
+  width: 0.2rem;
+  padding-left: 3rem;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
   border-radius: 5rem;
 }
 
@@ -16,64 +16,6 @@
   background: #555;
 }
 
-/* From Uiverse.io by satyamchaudharydev */
-/* The switch - the box around the slider */
-.switch {
-  display: block;
-  --width-of-switch: 3.5em;
-  --height-of-switch: 2em;
-  /* size of sliding icon -- sun and moon */
-  --size-of-icon: 1.4em;
-  /* it is like a inline-padding of switch */
-  --slider-offset: 0.3em;
-  position: relative;
-  width: var(--width-of-switch);
-  height: var(--height-of-switch);
-
-  input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #f4f4f5;
-  transition: 0.4s;
-  border-radius: 30px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: var(--size-of-icon, 1.4em);
-  width: var(--size-of-icon, 1.4em);
-  border-radius: 20px;
-  left: var(--slider-offset, 0.3em);
-  top: 50%;
-  transform: translateY(-50%);
-  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #303136;
-}
-
-input:checked + .slider:before {
-  left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
-  background: #303136;
-  /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
-  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
-}
-
 .center {
   display: flex;
   align-items: center;
@@ -83,14 +25,13 @@ input:checked + .slider:before {
 .container {
   flex-direction: column;
   width: 100vw;
-  height: 98vh;
+  height: 100vh;
 
   background-image: radial-gradient(
-    rgba(255, 255, 255, 0.05) 2px,
+    rgba(255, 255, 255, 0.02) 2px,
     transparent 0
   );
-  background-size: 3rem 3rem;
-  background-position: -5px -5px;
+  background-size: 2rem 2rem;
 }
 
 .details {
@@ -148,7 +89,6 @@ input:checked + .slider:before {
   align-items: start;
   flex-direction: column;
   width: 50%;
-  height: 85%;
 }
 
 .content_title svg {
@@ -174,7 +114,7 @@ main {
 
   h2 {
     font-size: 1.5rem;
-    color: #fff;
+    color: #fafafa;
     margin: 2rem 0;
   }
 }
@@ -189,6 +129,7 @@ main .content_message {
 
   span {
     font-size: 0.9rem;
+    color: #b8b8b8;
   }
 }
 
@@ -196,12 +137,12 @@ main .content_message {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #2d2d2d;
   height: 2rem;
   width: 100%;
   padding: 0 0.6rem 0 0.2rem;
   border-radius: 0.65rem;
   border: 1px solid rgb(63, 63, 63);
+  background-color: #2f2d30;
 }
 
 .messageBox:focus-within {
@@ -266,12 +207,14 @@ main .content_message {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-
   margin: 1rem 0;
 
-  /* From Uiverse.io by gharsh11032000 */
-  .menu {
+  span {
+    color: #b8b8b8;
     font-size: 0.9rem;
+  }
+
+  .menu {
     line-height: 1rem;
     color: #6f6f6f;
     width: fit-content;
@@ -436,60 +379,74 @@ main .content_message {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  background-color: #2f2d30;
+  border-radius: 0.5rem;
+  padding: 2px;
+  margin-bottom: 0.2rem;
 
-  input {
-    appearance: none;
-    width: 1.2rem;
-    height: 1.2rem;
-    margin: 0 0.6rem;
-    background-color: #171717;
-    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-    border-radius: 50%;
-    transition: 0.4s ease-in-out;
-  }
-}
-
-.wrapper_item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-
-  input:hover {
-    scale: 1.2;
-    cursor: pointer;
-    box-shadow: none;
-  }
-
-  input:checked {
-    box-shadow: none;
-    border: 2px solid #6f6f6f;
-  }
-
-  input:checked {
-    transform: rotate(360deg);
-    scale: 1;
-  }
-
-  span {
-    font-size: 1.2rem;
-  }
-
-  .input-p {
+  .wrapper_item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
+
+    input {
+      appearance: none;
+      width: 1.2rem;
+      height: 1.2rem;
+      margin: 0 0.6rem;
+      background-color: transparent;
+      border: 2px solid #88888a;
+      border-radius: 50%;
+      transition: 0.4s ease-in-out;
+    }
+
+    input:hover {
+      scale: 1.2;
+      cursor: pointer;
+      box-shadow: none;
+    }
+
+    input:checked {
+      box-shadow: none;
+      background-color: #12808d;
+      border: 2px solid #12808d;
+      scale: 1;
+    }
+
+    input:checked:hover {
+      scale: 1.2;
+    }
+
+    span {
+      font-size: 1.2rem;
+    }
+
+    .input-p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 
 .list_item {
   font-size: 0.9rem;
-  font-weight: normal;
-  letter-spacing: 0.05rem;
+  font-weight: 500;
+  letter-spacing: 0.08rem;
   white-space: nowrap;
   overflow: hidden;
   width: 32rem;
   text-overflow: ellipsis;
+  color: #b8b8b8;
+  margin-left: 0.5rem;
+}
+
+.check_item_done {
+  position: relative;
+  right: 34rem;
+  z-index: inherit;
+  cursor: pointer;
 }
 
 .buttonMore {
@@ -513,11 +470,12 @@ main .content_message {
   align-items: center;
   justify-content: space-around;
   position: relative;
-  right: 1rem;
+  right: 1.2rem;
   width: 6rem;
   height: 2rem;
-  background-color: #323232;
+  background-color: #383838;
   border-radius: 0.5rem;
+  padding: 0 5px;
   z-index: 9999;
 
   button {

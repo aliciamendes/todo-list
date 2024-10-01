@@ -1,6 +1,6 @@
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 768px) {
   .content {
-    width: 60%;
+    width: 80%;
   }
 
   .list_notes {
@@ -8,29 +8,15 @@
   }
 
   .list_item {
-    width: 22rem;
+    max-width: 28rem;
   }
 
   .moreOptions {
-    right: 3rem;
+    right: 0.2rem;
   }
 }
 
-@media screen and (max-width: 580px) {
-  .list_notes {
-    height: 15rem;
-  }
-
-  .list_item {
-    width: 17rem;
-  }
-
-  .moreOptions {
-    right: 4rem;
-  }
-}
-
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 700px) {
   .content {
     width: 70%;
   }
@@ -40,30 +26,94 @@
   }
 
   .list_item {
-    width: 14rem;
+    max-width: 21rem;
   }
 
   .moreOptions {
-    right: 4rem;
+    right: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .content {
+    width: 80%;
+  }
+
+  .list_item {
+    max-width: 22rem;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .list_notes {
+    height: 15rem;
+  }
+
+  .list_item {
+    max-width: 19rem;
+  }
+
+  .moreOptions {
+    right: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .list_notes {
+    height: 15rem;
+  }
+
+  .list_item {
+    width: 17rem;
+    font-size: 0.8rem;
+  }
+
+  .moreOptions {
+    right: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .content {
+    width: 80%;
+  }
+
+  .list_notes {
+    height: 16rem;
+  }
+
+  .list_item {
+    width: 11.5rem;
+  }
+
+  .moreOptions {
+    right: 0.2rem;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .container {
-    background-size: 2rem 2rem;
-    background-position: -10px -15px;
+  .content {
+    width: 85%;
   }
 
-  .goGit a {
-    height: 1.5rem;
+  .list_notes {
+    height: 16rem;
+  }
+
+  .list_item {
+    max-width: 8rem;
+  }
+
+  .moreOptions {
+    right: 0.5rem;
+  }
+
+  .goGit a > span {
+    display: none;
   }
 
   .goGit svg {
-    width: 1.2rem;
-  }
-
-  .content {
-    width: 80%;
+    width: 1.5rem;
   }
 
   .content_title {
@@ -89,36 +139,5 @@
 
   .list_item {
     width: 12rem;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .goGit a {
-    height: 1rem;
-  }
-
-  .goGit svg {
-    width: 1.2rem;
-  }
-
-  .content_title {
-    height: 4rem;
-  }
-
-  .list_info > span {
-    font-size: 0.8rem;
-  }
-
-  .content_message span {
-    font-size: 0.8rem;
-  }
-
-  .content_title svg {
-    width: 2rem;
-  }
-
-  .list_item {
-    font-size: 0.8rem;
-    width: 10rem;
   }
 }

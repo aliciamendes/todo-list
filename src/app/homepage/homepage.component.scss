@@ -434,12 +434,12 @@ main .content_message {
   font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.08rem;
+  max-width: 39rem;
+  margin-left: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
-  width: 32rem;
   text-overflow: ellipsis;
   color: #b8b8b8;
-  margin-left: 0.5rem;
 }
 
 .check_item_done {
@@ -469,14 +469,15 @@ main .content_message {
   display: flex;
   align-items: center;
   justify-content: space-around;
+
   position: relative;
-  right: 1.2rem;
+  right: 1.8rem;
   width: 6rem;
   height: 2rem;
   background-color: #383838;
   border-radius: 0.5rem;
   padding: 0 5px;
-  z-index: 9999;
+  z-index: 99999999;
 
   button {
     border: none;

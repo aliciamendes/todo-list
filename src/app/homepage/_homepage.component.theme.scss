@@ -1,0 +1,58 @@
+@use "@angular/material" as mat;
+
+@mixin theme($theme) {
+  .container {
+    background-color: mat.get-theme-color($theme, surface-bright);
+  }
+
+  main .content_message {
+    span {
+      color: mat.get-theme-color($theme, secondary-fixed);
+    }
+  }
+
+  span {
+    color: mat.get-theme-color($theme, secondary-fixed);
+  }
+
+  .messageBox {
+    border: mat.get-theme-color($theme, on-tertiary-fixed);
+    background-color: mat.get-theme-color($theme, surface-container-low);
+  }
+
+  #messageInput {
+    color: mat.get-theme-color($theme, surface-tint);
+  }
+
+  #sendButton:hover svg path,
+  #messageInput:focus ~ #sendButton svg path,
+  #messageInput:valid ~ #sendButton svg path {
+    fill: mat.get-theme-color($theme, tertiary-fixed);
+    stroke: mat.get-theme-color($theme, on-tertiary-fixed);
+  }
+
+  .list_info {
+    span {
+      color: mat.get-theme-color($theme, secondary-fixed);
+    }
+  }
+
+  .wrapper_check {
+    background-color: mat.get-theme-color($theme, surface-container);
+
+    input:checked {
+      background-color: mat.get-theme-color($theme, surface-dim);
+      border: 2px solid mat.get-theme-color($theme, surface-dim);
+    }
+  }
+
+  .list_item {
+    color: mat.get-theme-color($theme, on-tertiary-fixed-variant);
+  }
+
+  .theme-switch {
+    mat-icon {
+      color: mat.get-theme-color($theme, tertiary-fixed-dim);
+    }
+  }
+}

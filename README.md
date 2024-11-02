@@ -45,7 +45,7 @@ Take a closer look at the original project: [LocalList](https://github.com/joaov
 
 - [ x ] set task
 - [ x ] sort in ascending and descending order
-- [ ] light and dark theme
+- [ x ] light and dark theme
 - [ ] include categories for tasks (with colors, perhaps)
 - [ ] include sections for tasks
 - [ ] encrypt and decrypt note data

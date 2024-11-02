@@ -1,8 +1,10 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
   HostListener,
+  inject,
   OnInit,
 } from '@angular/core';
 import {
@@ -12,13 +14,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { map, Observable, shareReplay } from 'rxjs';
 import { Note } from '../core/modules/interface';
 import { NoteService } from '../core/services/note.service';
 import { generatePlaceholder } from '../core/services/random-placeholder.service';
 import { generateUID } from '../core/services/random-uuid.service';
+import { ThemeManagerService } from '../core/services/theme-manager.service';
 import { sortingNotes } from './../core/services/order_notes.service';
 
 @Component({
@@ -28,9 +34,12 @@ import { sortingNotes } from './../core/services/order_notes.service';
     RouterModule,
     ReactiveFormsModule,
     CommonModule,
-    MatSlideToggleModule,
     FormsModule,
-    AsyncPipe,
+    MatIconModule,
+    RouterLink,
+    RouterLinkActive,
+    MatTooltipModule,
+    MatSelectModule,
   ],
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss', './responsive.component.scss'],
@@ -245,5 +254,21 @@ export class HomepageComponent implements OnInit {
     this.getStringInput.patchValue({ descriptionNote: '' });
     this.isDone();
     this.getNotes();
+  }
+
+  private breakpointObserver = inject(BreakpointObserver);
+
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map((result) => result.matches),
+      shareReplay()
+    );
+
+  private themeManager = inject(ThemeManagerService);
+  theme = this.themeManager.theme;
+
+  toggleTheme() {
+    this.themeManager.toggleTheme();
   }
 }

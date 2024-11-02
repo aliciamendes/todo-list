@@ -26,28 +26,27 @@
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  background-color: #222224;
 
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.02) 2px,
-    transparent 0
-  );
   background-size: 2rem 2rem;
 }
 
 .details {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  width: 9rem;
+  max-width: 9rem;
   align-self: end;
+  margin-right: 1.5rem;
 }
 
 .goGit {
   display: flex;
   background-color: transparent;
   border: none;
-  padding: 0.1rem 0.8rem;
+  padding: 0 0.8rem;
   cursor: pointer;
-  margin-right: 1.8rem;
   transition: all 0.2s linear;
   font-weight: bold;
 
@@ -66,22 +65,31 @@
     width: 1.5rem;
     margin-right: 0.5rem;
     transition: all 0.3s linear;
+    opacity: 1;
+  }
+
+  span {
+    opacity: 1;
   }
 }
 
 .goGit:hover svg {
-  transition: all 0.3s linear;
-  fill: #6a4daa;
+  transition: all 0.2s linear;
+  opacity: 0.6;
 }
 
-.goGit:hover span {
-  transition: all 0.3s linear;
-  color: #4d4d4d;
+.goGit:hover span,
+.theme-switch:hover {
+  transition: all 0.2s linear;
+  opacity: 0.6;
+  cursor: pointer;
 }
 
-.goGit:hover span {
-  transition: all 0.3s linear;
-  color: #8d8d8d;
+.theme-switch {
+  background-color: transparent;
+  border: none;
+  opacity: 1;
+  transition: all 0.2s linear;
 }
 
 .content {
@@ -97,12 +105,7 @@
 }
 
 span {
-  color: #6f6f6f;
   font-weight: bold;
-}
-
-p {
-  color: #bebebe;
 }
 
 main {
@@ -129,7 +132,6 @@ main .content_message {
 
   span {
     font-size: 0.9rem;
-    color: #b8b8b8;
   }
 }
 
@@ -157,13 +159,8 @@ main .content_message {
   border: none;
   padding-left: 10px;
   padding-right: 10px;
-  color: white;
-}
-
-#messageInput:focus ~ #sendButton svg path,
-#messageInput:valid ~ #sendButton svg path {
-  fill: #3c3c3c;
-  stroke: white;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 #sendButton {
@@ -188,11 +185,6 @@ main .content_message {
   }
 }
 
-#sendButton:hover svg path {
-  fill: #3c3c3c;
-  stroke: white;
-}
-
 .noteList {
   display: flex;
   align-items: start;
@@ -210,7 +202,6 @@ main .content_message {
   margin: 1rem 0;
 
   span {
-    color: #b8b8b8;
     font-size: 0.9rem;
   }
 
@@ -292,8 +283,8 @@ main .content_message {
     transform: translateY(0);
     pointer-events: auto;
     border-top: transparent;
-    background-color: rgba(255, 255, 255, 0.05);
     border: none;
+    backdrop-filter: blur(10px);
   }
 
   .menu .item:hover .link {
@@ -340,7 +331,7 @@ main .content_message {
     transform: scaleX(0);
     width: 100%;
     height: 100%;
-    background-color: #2b2b2e;
+    background-color: #4c4c7457;
     z-index: -1;
     transform-origin: left;
     transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
@@ -418,10 +409,6 @@ main .content_message {
       scale: 1.2;
     }
 
-    span {
-      font-size: 1.2rem;
-    }
-
     .input-p {
       display: flex;
       align-items: center;
@@ -432,14 +419,13 @@ main .content_message {
 
 .list_item {
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.08rem;
   max-width: 39rem;
   margin-left: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #b8b8b8;
 }
 
 .check_item_done {
@@ -457,12 +443,12 @@ main .content_message {
   background: transparent;
   border-radius: 0.2rem;
   padding: 0.2rem 0;
-  transition: background-color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .buttonMore:hover {
   cursor: pointer;
-  background-color: #2b2b2e;
+  filter: brightness(0.8);
 }
 
 .moreOptions {
